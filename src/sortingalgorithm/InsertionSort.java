@@ -9,7 +9,7 @@ public class InsertionSort extends SortingAlgorithm {
 			return list;
 		}
 
-		for (int i = 0; i < list.length; i++) {
+		for (int i = 0; i < list.length - 2; i++) {
 			int currentEntry = list[i];
 			int j = i;
 			while (j > 0 && list[j-1] > currentEntry) {
