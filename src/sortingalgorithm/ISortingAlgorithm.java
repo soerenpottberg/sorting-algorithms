@@ -8,6 +8,6 @@ public interface ISortingAlgorithm {
 	
 	long getResultOfTimeMeasurement();
 	
-	Object[] sort( Object[] list);
+	int[] sort( int[] list);
 	
 }
