@@ -5,11 +5,13 @@ public class InsertionSort extends SortingAlgorithm {
 	@Override
 	public int[] sort(int[] list) {
 		
+		startTimeMeasurement();
+		
 		if(list.length == 0) {
 			return list;
 		}
 
-		for (int i = 0; i < list.length - 2; i++) {
+		for (int i = 0; i < list.length; i++) {
 			int currentEntry = list[i];
 			int j = i;
 			while (j > 0 && list[j-1] > currentEntry) {
@@ -18,6 +20,8 @@ public class InsertionSort extends SortingAlgorithm {
 			}
 			list[j] = currentEntry;
 		}
+		
+		stopTimeMeasurement();
 		
 		return list;
 		
