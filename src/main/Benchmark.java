@@ -2,6 +2,7 @@ package main;
 
 import java.util.Arrays;
 
+import sortingalgorithm.BubbleSort;
 import sortingalgorithm.ISortingAlgorithm;
 import sortingalgorithm.InsertionSort;
 import sortingalgorithm.SelectionSort;
@@ -9,7 +10,7 @@ import sortingalgorithm.SelectionSort;
 public class Benchmark {
 
 	static final int[] sizes = {1000, 10000};
-	static ISortingAlgorithm[] sortingAlgorithms = new ISortingAlgorithm[2];
+	static ISortingAlgorithm[] sortingAlgorithms = new ISortingAlgorithm[3];
 	
 	/**
 	 * @param args
@@ -18,6 +19,7 @@ public class Benchmark {
 
 		sortingAlgorithms[0] = new InsertionSort();
 		sortingAlgorithms[1] = new SelectionSort();
+		sortingAlgorithms[2] = new BubbleSort();
 
 		int[] list;
 
@@ -53,8 +55,6 @@ public class Benchmark {
 			
 			
 		}
-
-		System.out.println("\n");
 
 	}
 
