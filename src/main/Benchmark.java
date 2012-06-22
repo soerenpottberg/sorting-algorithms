@@ -8,7 +8,7 @@ import sortingalgorithm.SelectionSort;
 
 public class Benchmark {
 
-	static final int[] sizes = {10};
+	static final int[] sizes = {1000, 10000};
 	static ISortingAlgorithm[] sortingAlgorithms = new ISortingAlgorithm[2];
 	
 	/**
@@ -27,36 +27,42 @@ public class Benchmark {
 
 			for (int size : sizes) {
 				
-				System.out.println(size);
+				System.out.print(size + ":\t");
 
 				// Sortierte Liste
 				list = Universum.createSortedList(size);
-				System.out.println(Arrays.toString(list));
 				algorithm.sort(list);
-				System.out.println(Arrays.toString(list));
-				System.out.println(algorithm.getResultOfTimeMeasurement() + " ");
+				outputTime(algorithm.getResultOfTimeMeasurement());
 
 				// Inverse Liste
 				list = Universum.createInversList(size);
-				System.out.println(Arrays.toString(list));
 				algorithm.sort(list);
-				System.out.println(Arrays.toString(list));
-				System.out.println(algorithm.getResultOfTimeMeasurement()+ " ");
+				outputTime(algorithm.getResultOfTimeMeasurement());
 
 				// Zufällige Liste
 				for (int i = 0; i < 5; i++) {
 					list = Universum.createRandomList(size);
-					System.out.println(Arrays.toString(list));
 					algorithm.sort(list);
-					System.out.println(Arrays.toString(list));
-					System.out.println(algorithm.getResultOfTimeMeasurement() + " ");
+					outputTime(algorithm.getResultOfTimeMeasurement());
 				}
+				
+				System.out.println("");
 
-			}			
+			}
+			
+			
+			
 		}
 
 		System.out.println("\n");
 
+	}
+
+	private static void outputTime(double resultOfTimeMeasurement) {
+		
+		System.out.format("%f", resultOfTimeMeasurement);
+		System.out.print("\t");
+		
 	}
 
 }

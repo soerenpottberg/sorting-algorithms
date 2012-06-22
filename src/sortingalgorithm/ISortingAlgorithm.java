@@ -6,7 +6,7 @@ public interface ISortingAlgorithm {
 	
 	void stopTimeMeasurement();
 	
-	long getResultOfTimeMeasurement();
+	double getResultOfTimeMeasurement();
 	
 	int[] sort( int[] list);
 	

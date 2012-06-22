@@ -21,7 +21,7 @@ public class Universum {
 		int[] list = new int[size];
 		
 		for (int i = 0; i < list.length; i++) {
-			list[i] = list.length - i;
+			list[i] = list.length - i - 1;
 		}
 		
 		return list;

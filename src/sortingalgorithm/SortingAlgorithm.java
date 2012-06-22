@@ -21,9 +21,9 @@ abstract public class SortingAlgorithm implements ISortingAlgorithm {
 	}
 
 	@Override
-	public long getResultOfTimeMeasurement() {
+	public double getResultOfTimeMeasurement() {
 
-		return resultTime;
+		return resultTime / 1000.0;
 
 	}
 
