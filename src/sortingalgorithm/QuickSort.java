@@ -20,7 +20,7 @@ public class QuickSort extends SortingAlgorithm {
 	private int[] sort( int left, int right, int[] list) {
 		
 		int i;
-		if(right > left) {
+		while(right > left) {
 			i = left - 1;
 			int j = right;
 			int pivotIndex = getMedian(left, right, (left + right) / 2, list);
@@ -45,7 +45,8 @@ public class QuickSort extends SortingAlgorithm {
 			list[i] = list[right];
 			list[right] = x;
 			sort(left,i - 1, list);
-			sort(i + 1,right, list);
+			//sort(i + 1,right, list); wird iterativ durch das while simuliert
+			left = i + 1;
 		}
 		
 		return list;
