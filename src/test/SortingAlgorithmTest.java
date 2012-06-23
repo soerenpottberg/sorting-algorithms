@@ -1,5 +1,8 @@
 package test;
 
+import java.util.Arrays;
+
+import main.Universum;
 import sortingalgorithm.ISortingAlgorithm;
 import junit.framework.TestCase;
 
@@ -55,6 +58,23 @@ public class SortingAlgorithmTest extends TestCase{
 		assertEquals(2, list[1]);
 		assertEquals(3, list[2]);
 		assertEquals(4, list[3]);
+		
+	}
+    
+    public void testSort4() {
+    	
+    	if(algorithm == null) {
+			return;
+		}
+		
+    	int[] list = Universum.createRandomList(1000);
+		int[] copy = list.clone();
+    	algorithm.sort(list);
+    	Arrays.sort(copy);
+		
+    	for (int i = 0; i < list.length; i++) {
+    		assertEquals(copy[i], list[i]);
+		}
 		
 	}
 	
