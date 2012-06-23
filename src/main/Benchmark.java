@@ -1,6 +1,7 @@
 package main;
 
 import sortingalgorithm.BubbleSort;
+import sortingalgorithm.HeapSort;
 import sortingalgorithm.ISortingAlgorithm;
 import sortingalgorithm.InsertionSort;
 import sortingalgorithm.SelectionSort;
@@ -9,7 +10,7 @@ import sortingalgorithm.ShellSort;
 public class Benchmark {
 
 	static final int[] sizes = {1000, 10000};
-	static ISortingAlgorithm[] sortingAlgorithms = new ISortingAlgorithm[4];
+	static ISortingAlgorithm[] sortingAlgorithms = new ISortingAlgorithm[5];
 	
 	/**
 	 * @param args
@@ -20,6 +21,7 @@ public class Benchmark {
 		sortingAlgorithms[1] = new SelectionSort();
 		sortingAlgorithms[2] = new BubbleSort();
 		sortingAlgorithms[3] = new ShellSort();
+		sortingAlgorithms[4] = new HeapSort();
 
 		int[] list;
 
