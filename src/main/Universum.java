@@ -34,7 +34,7 @@ public class Universum {
 		Random random = new Random();
 		
 		for (int i = 0; i < list.length; i++) {
-			list[i] = random.nextInt();
+			list[i] = random.nextInt(size);
 		}
 		
 		return list;
