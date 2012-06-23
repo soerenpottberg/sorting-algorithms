@@ -4,13 +4,14 @@ import sortingalgorithm.BubbleSort;
 import sortingalgorithm.HeapSort;
 import sortingalgorithm.ISortingAlgorithm;
 import sortingalgorithm.InsertionSort;
+import sortingalgorithm.QuickSort;
 import sortingalgorithm.SelectionSort;
 import sortingalgorithm.ShellSort;
 
 public class Benchmark {
 
-	static final int[] sizes = {1000, 10000};
-	static ISortingAlgorithm[] sortingAlgorithms = new ISortingAlgorithm[5];
+	static final int[] sizes = {1000, 10000, 100000};
+	static ISortingAlgorithm[] sortingAlgorithms = new ISortingAlgorithm[6];
 	
 	/**
 	 * @param args
@@ -22,6 +23,7 @@ public class Benchmark {
 		sortingAlgorithms[2] = new BubbleSort();
 		sortingAlgorithms[3] = new ShellSort();
 		sortingAlgorithms[4] = new HeapSort();
+		sortingAlgorithms[5] = new QuickSort();
 
 		int[] list;
 
