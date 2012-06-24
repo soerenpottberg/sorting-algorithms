@@ -1,32 +1,40 @@
 package sortingalgorithm;
 
-import java.util.Arrays;
-
 public class MergeSort extends SortingAlgorithm {
 
 	@Override
-	public int[] sort(int[] listA) {
+	public int[] sort(int[] list) {
 
 		startTimeMeasurement();
 		
-		int length = listA.length;
+		int oldLength = list.length;
+		int potenz = (int) Math.ceil(Math.log(oldLength) / Math.log(2));
+		int length = (int) Math.pow(2, potenz);
+		int[] listA = new int[length];
 		int[] listB = new int[length/2];
 		int[] listC = new int[length];
 		int[] listD = new int[length/2];
 		
-		for (int i = 0; i < listA.length; i++) {
+		for (int i = 0; i < oldLength; i++) {
 			if(i%2 == 0) {
-				listC[i/2] = listA[i];
+				listC[i/2] = list[i];
 			} else {
-				listD[i/2] = listA[i];
+				listD[i/2] = list[i];
+			}
+		}
+		for (int i = oldLength; i < length; i++) {
+			if(i%2 == 0) {
+				listC[i/2] = Integer.MAX_VALUE;
+			} else {
+				listD[i/2] = Integer.MAX_VALUE;
 			}
 		}
 		boolean odd = true;
-		for(int i = 1; i < listA.length; i *= 2) {
+		for(int blockSize = 1; blockSize <= listA.length / 2; blockSize *= 2) {
 			if(odd) {
-				merge(listC, listD, listA, listB);
+				merge(listC, listD, listA, listB, blockSize);
 			} else {
-				merge(listA, listB, listC, listD);
+				merge(listA, listB, listC, listD, blockSize);
 			}
 			odd = !odd;
 		}
@@ -34,54 +42,54 @@ public class MergeSort extends SortingAlgorithm {
 		stopTimeMeasurement();
 		
 		if(odd){
-			listA = Arrays.copyOf(listC, listA.length);
+			for (int i = 0; i < oldLength; i++) {
+				list[i] = listC[i];
+			}
+		} else {
+			for (int i = 0; i < oldLength; i++) {
+				list[i] = listA[i];
+			}
 		}
 		
-		return listA;
+		return list;
 		
 	}
 
-	private void merge(int[] listA, int[] listB, int[] listC, int[] listD) {
+	private void merge(int[] listA, int[] listB, int[] listC, int[] listD, int blockSize) {
 
-		int a = 0;
-		int b = 0;
-		int[] result = {a, b};
-		for (int i = 0; i < listA.length; i++) {
-			if(i % 2 == 1) {
-				result = run(listA, listB, listD, result[0], result[1]);
+		for (int blockOffset = 0; blockOffset * blockSize <= listA.length / 2; blockOffset++) {
+			if(blockOffset % 2 == 1) {
+				mergeBlock(listA, listB, listD, blockOffset, blockSize);
 			} else {
-				result = run(listA, listB, listC, result[0], result[1]);
-			}
-			if(result[0] + result[1] >= listC.length) {
-				break;
+				mergeBlock(listA, listB, listC, blockOffset, blockSize);
 			}
 		}
 		
 	}
 
-	private int[] run(int[] listA, int[] listB, int[] listC, int i, int j) {
+	private void mergeBlock(int[] listA, int[] listB, int[] listC, int blockOffset, int blockSize) {
 		
-		int m = listA.length / 2;
-		while (i<m && j <m  && i + j < listC.length) {
-			if (listA[i] <= listB[j]) {
-				listC[i+j] = listA[i];
-				i++;
+		int a = blockOffset * blockSize;
+		int b = a;
+		int c = blockOffset / 2 * 2 * blockSize;
+		int nextOffset = (blockOffset+1) * blockSize;
+		while (a<nextOffset && b <nextOffset &&  a < listA.length &&  b < listB.length) {
+			if (listA[a] <= listB[b]) {
+				listC[c++] = listA[a];
+				a++;
 			} else {
-				listC[i+j] = listB[j];
-				j++;
+				listC[c++] = listB[b];
+				b++;
 			}
 		}
-		while (i < m && i + j < listC.length) {
-			listC[i+j] = listA[i];
-			i++;
+		while (a < nextOffset &&  a < listA.length) {
+			listC[c++] = listA[a];
+			a++;
 		}
-		while (j < m && i + j < listC.length) {
-			listC[i+j] = listB[j];
-			j++;
+		while (b < nextOffset &&  b < listB.length) {
+			listC[c++] = listB[b];
+			b++;
 		}
-		
-		int[] result = {i, j};
-		return result;
 	
 	}
 
