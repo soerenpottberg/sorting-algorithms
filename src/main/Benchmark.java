@@ -1,6 +1,7 @@
 package main;
 
 import sortingalgorithm.BubbleSort;
+import sortingalgorithm.BucketSort;
 import sortingalgorithm.HeapSort;
 import sortingalgorithm.ISortingAlgorithm;
 import sortingalgorithm.InsertionSort;
@@ -11,8 +12,8 @@ import sortingalgorithm.ShellSort;
 
 public class Benchmark {
 
-	static final int[] sizes = {1000, 10000};
-	static ISortingAlgorithm[] sortingAlgorithms = new ISortingAlgorithm[7];
+	static final int[] sizes = {1000, 10000, 100000};
+	static ISortingAlgorithm[] sortingAlgorithms = new ISortingAlgorithm[8];
 	
 	/**
 	 * @param args
@@ -26,8 +27,11 @@ public class Benchmark {
 		sortingAlgorithms[4] = new HeapSort();
 		sortingAlgorithms[5] = new QuickSort();
 		sortingAlgorithms[6] = new MergeSort();
+		sortingAlgorithms[7] = new BucketSort();
 
 		int[] list;
+		
+		System.out.println("Size\tsortiert\tinvers\t\trandom1\t\t2\t\t3\t\t4\t\t5\n");
 
 		for (ISortingAlgorithm algorithm : sortingAlgorithms) {
 
