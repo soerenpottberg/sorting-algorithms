@@ -1,7 +1,5 @@
 package sortingalgorithm;
 
-import java.nio.channels.Pipe;
-
 public class QuickSort extends SortingAlgorithm {
 
 	@Override
