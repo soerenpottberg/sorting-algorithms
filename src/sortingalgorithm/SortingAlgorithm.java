@@ -8,14 +8,14 @@ abstract public class SortingAlgorithm implements ISortingAlgorithm {
 	@Override
 	public void startTimeMeasurement() {
 
-		startTime = System.currentTimeMillis();
+		startTime = System.nanoTime();
 
 	}
 
 	@Override
 	public void stopTimeMeasurement() {
 
-		long endTime = System.currentTimeMillis();
+		long endTime = System.nanoTime();
 		resultTime = endTime - startTime;
 
 	}
@@ -23,7 +23,7 @@ abstract public class SortingAlgorithm implements ISortingAlgorithm {
 	@Override
 	public double getResultOfTimeMeasurement() {
 
-		return resultTime / 1000.0;
+		return resultTime / 1000000000.0;
 
 	}
 

@@ -35,21 +35,46 @@ public class Benchmark {
 
 		for (ISortingAlgorithm algorithm : sortingAlgorithms) {
 
+			if(algorithm == null) {
+				continue;
+			}
+			
 			System.out.println(algorithm.getClass().getSimpleName() + ": ");
 
+			
 			for (int size : sizes) {
 				
 				System.out.print(size + ":\t");
+				
+				int times = 0;
+				double resultSum = 0;
+				double result;
+				double min = 0;
+				double max = 0;
 
 				// Sortierte Liste
-				list = Universum.createSortedList(size);
-				algorithm.sort(list);
-				outputTime(algorithm.getResultOfTimeMeasurement());
-
+				do {
+					list = Universum.createSortedList(size);
+					algorithm.sort(list);
+					result = algorithm.getResultOfTimeMeasurement();
+				    min = resultSum / times * .95;
+				    max = resultSum / times * 1.05;
+				    times++;
+				    resultSum += result;
+				} while(size <= 10000 &&(times == 1 || min > result || max < result));
+				outputTime(resultSum, times);
+				
 				// Inverse Liste
-				list = Universum.createInversList(size);
-				algorithm.sort(list);
-				outputTime(algorithm.getResultOfTimeMeasurement());
+				do {
+					list = Universum.createInversList(size);
+					algorithm.sort(list);
+					result = algorithm.getResultOfTimeMeasurement();
+				    min = resultSum / times * .95;
+				    max = resultSum / times * 1.05;
+				    times++;
+				    resultSum += result;
+				} while(size <= 10000 &&(times == 1 || min > result || max < result));
+				outputTime(resultSum, times);
 
 				// Zufällige Liste
 				for (int i = 0; i < 5; i++) {
@@ -66,6 +91,14 @@ public class Benchmark {
 			
 		}
 
+	}
+
+	private static void outputTime(double resultSum, int times) {
+
+		double resultOfTimeMeasurement = resultSum / times;
+		System.out.format("%f", resultOfTimeMeasurement);
+		System.out.print("\t");
+		
 	}
 
 	private static void outputTime(double resultOfTimeMeasurement) {
