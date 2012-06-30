@@ -21,10 +21,11 @@ public class QuickSort extends SortingAlgorithm {
 		while(right > left) {
 			i = left - 1;
 			int j = right;
-			int pivotIndex = getMedian(left, right, (left + right) / 2, list);
-			int pivot = list[pivotIndex];
-			list[pivotIndex] = list[right];
-			list[right] = pivot;
+			//int pivotIndex = getMedian(left, right, (left + right) / 2, list);
+			//int pivot = list[pivotIndex];
+			//list[pivotIndex] = list[right];
+			//list[right] = pivot;
+			int pivot = list[right];
 			while (true) {
 				do {
 					i++;
@@ -51,6 +52,7 @@ public class QuickSort extends SortingAlgorithm {
 				
 	}
 
+	@SuppressWarnings("unused")
 	private int getMedian(int left, int right, int middle, int[] list) {
 		if(list[left] >= list[right]) {
 			if(list[left] <= list[(left + right) / 2]) {
